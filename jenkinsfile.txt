@@ -8,4 +8,7 @@ node {
   stage ('archive') {
          archive 'target/*.jar'
   }
+  stage ('test results')
+         junit 'target/surefire-reports/*.xml'
+  }
 }
