@@ -1,0 +1,10 @@
+node {
+  stage ('scm') {
+        git 'https://github.com/jayaprakash521/spc.git'
+  }
+  stage ('build the packages') {
+        sh 'mvn install package'
+  }
+  stage ('archive') {
+         archive 'target/*.jar'
+  }
