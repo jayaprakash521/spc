@@ -13,9 +13,9 @@ pipeline {
          sh 'mvn clean package'
        }
     }
-    stage('archive) {
+    stage('archive') {
        step {
-         archieve 'target/*.jar'
+         archive 'target/*.jar'
        }
     }
   }
