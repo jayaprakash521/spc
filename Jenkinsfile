@@ -4,9 +4,10 @@ node('Med') {
       git url: 'https://github.com/jayaprakash521/spc.git',branch: "${params.branch_name}"
       }
      stage('build') {
-      if branch_name == 'master'
+      if (branch_name == 'master') {
          sh 'mvn package'
-      else
+	 }
+      else {
          sh 'mvn clean package'
       }
      stage('archive artifacts') {
