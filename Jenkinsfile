@@ -10,6 +10,7 @@ node('Med') {
       else {
          sh 'mvn clean package'
       }
+     }
      stage('archive artifacts') {
       archive 'target/*.jar'
       }
