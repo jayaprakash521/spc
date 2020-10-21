@@ -15,7 +15,7 @@ pipeline{
       }
     stage ('archive'){
       steps {
-       archiveArtifacts archive: 'target/*.jar'
+       archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
        }
       }
     stage ('junit'){
