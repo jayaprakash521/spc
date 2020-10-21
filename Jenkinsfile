@@ -23,8 +23,10 @@ pipeline{
      steps {
       sh 'mvn clean package'
       }
+     steps {
+      sh 'mvn package'
      }
-    
+     
     stage ('archive'){
       steps {
        archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
