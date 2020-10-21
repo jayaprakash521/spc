@@ -16,14 +16,13 @@ pipeline{
       }
      }
     stage ('build the code'){
-      steps {
-       when branch_name == master
+      when branch_name == master
+        steps {
          sh 'mvn package'
 	 }
-       
-      steps {
-       sh 'mvn clean package'
-       }
+        steps {
+         sh 'mvn clean package'
+        }
       
      }
     
