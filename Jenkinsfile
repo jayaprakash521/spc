@@ -1,11 +1,14 @@
 pipeline{
-   parameters {
-        string(name: 'branch_name',default: 'master')
-    }
   agent {
     label 'Med'
     }
   stages {
+    stage ('params') {
+     steps { 
+       script {
+         properties([parameters([string(defaultValue: 'master', description: '', name: 'branch_name', trim: true)])])
+	 }
+	}
     stage ('git'){
      steps {
       git url: 'https://github.com/jayaprakash521/spc.git',branch: "${params.branch_name}"
