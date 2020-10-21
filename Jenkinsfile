@@ -22,18 +22,9 @@ pipeline{
       }
      steps {
       sh 'mvn clean package'
+       }
       }
-      when {
-       expression {
-        branch == 'sprint-1';
-      }
-     }
-    steps {
-      sh 'mvn package'
-     }
-     }
-     
-    stage ('archive'){
+     stage ('archive'){
       steps {
        archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
        }
