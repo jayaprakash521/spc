@@ -16,15 +16,19 @@ pipeline{
      }
     stage ('build the code'){
      when {
-       branch  'master'
+       expression {
+        branch == 'master';
+      }
       }
      steps {
       sh 'mvn clean package'
       }
       when {
-        branch  'sprint-1'
+       expression {
+        branch == 'sprint-1';
       }
-      steps {
+     }
+    steps {
       sh 'mvn package'
      }
      }
