@@ -5,9 +5,7 @@ pipeline{
   stages {
     stage ('params') {
      steps { 
-       script {
          properties([parameters([string(defaultValue: 'master', description: '', name: 'branch_name', trim: true)])])
-	 }
 	}
      }
     stage ('git'){
