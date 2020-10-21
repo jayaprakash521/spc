@@ -1,5 +1,7 @@
 pipeline{
-  properties([parameters([string(defaultValue: 'master', description: '', name: 'branch_name', trim: true)])])
+   parameters {
+        string(name: 'branch_name',default: 'master')
+    }
   agent {
     label 'Med'
     }
