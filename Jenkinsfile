@@ -2,10 +2,16 @@ pipeline{
   agent {
     label 'Med'
     }
+  parameters {
+    choice(
+        name: 'branch',
+        choices: "master\nsprint-1",
+        description: 'branch name' )
+	}
   stages {
     stage ('git'){
      steps {
-      git 'https://github.com/jayaprakash521/spc.git'
+      git url: 'https://github.com/jayaprakash521/spc.git', branch: "${params.branch}"
       }
      }
     stage ('build the code'){
