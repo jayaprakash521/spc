@@ -15,6 +15,11 @@ pipeline{
       }
      }
     stage ('build the code'){
+     when {
+     expression {
+       branch == 'master';
+       }
+      }
      steps {
       sh 'mvn clean package'
       }
