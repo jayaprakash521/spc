@@ -1,21 +1,28 @@
-node('Med') {
-     properties([parameters([string(defaultValue: 'master', description: '', name: 'branch_name', trim: false)])])
-     stage('GIT') {
-      git url: 'https://github.com/jayaprakash521/spc.git',branch: "${params.branch_name}"
-      }
-     stage('build') {
-      if (branch_name == 'master') {
-         sh 'mvn package'
-	 }
-      else {
-         sh 'mvn clean package'
+pipeline{
+  agent {
+    label 'Med'
+    }
+  stages {
+    stage ('git'){
+     steps {
+      git 'https://github.com/jayaprakash521/spc.git'
       }
      }
-     stage('archive artifacts') {
-      archive 'target/*.jar'
+    stage ('build the code'){
+      steps {
+       sh 'mvn package'
+       }
       }
-     stage('junit test results') {
-      junit 'target/surefire-reports/*.xml'
+    stage ('archive'){
+      steps {
+       archiveArtifacts archive: 'target/*.jar'
+       }
       }
-   }
-
+    stage ('junit'){
+      steps {
+        junit 'target/surefire-reports/*.xml'
+	}
+      }
+  }
+}
+    
