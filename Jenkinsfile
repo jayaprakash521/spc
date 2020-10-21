@@ -23,7 +23,7 @@ pipeline{
      steps {
       sh 'mvn clean package'
       }
-     steps {
+     not {
       sh 'mvn package'
      }
      }
