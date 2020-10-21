@@ -11,12 +11,12 @@ pipeline{
      }
     stage ('build the code'){
       steps {
-       if(branch_name == master){
-       sh 'mvn package'
-       }
-       else{
+       when branch_name == master
+         sh 'mvn package'
+       
+       else
        sh 'mvn clean package'
-      }
+      
      }
     }
     stage ('archive'){
