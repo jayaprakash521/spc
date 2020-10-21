@@ -14,8 +14,9 @@ pipeline{
        when branch_name == master
          sh 'mvn package'
        
-       else
+      steps {
        sh 'mvn clean package'
+       }
       
      }
     }
