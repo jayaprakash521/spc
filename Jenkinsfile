@@ -17,11 +17,11 @@ pipeline{
     stage ('build the code'){
      when {
        expression {
-        branch == 'master';
+        branch == 'sprint-1';
       }
       }
      steps {
-      sh 'mvn clean package'
+      sh 'mvn package'
        }
       }
      stage ('archive'){
