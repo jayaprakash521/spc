@@ -17,7 +17,7 @@ pipeline{
     stage ('build the code'){
      when {
        expression {
-        branch == 'master';
+        branch == 'sprint-2';
       }
       }
      steps {
