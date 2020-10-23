@@ -5,7 +5,7 @@ pipeline{
   parameters {
     choice(
         name: 'branch',
-        choices: "master\nsprint-1",
+        choices: "master\nsprint-1\nsprint-2",
         description: 'branch name' )
 	}
   stages {
