@@ -1,39 +1,19 @@
-pipeline{
-  agent {
-    label 'Med'
-    }
-  parameters {
-    choice(
-        name: 'branch',
-        choices: "master\nsprint-1\nsprint-2",
-        description: 'branch name' )
-	}
-  stages {
-    stage ('git'){
-     steps {
-      git url: 'https://github.com/jayaprakash521/spc.git', branch: "${params.branch}"
-      }
-     }
-    stage ('build the code'){
-     when {
-       expression {
-        branch == 'sprint-2';
-      }
-      }
-     steps {
-      sh 'mvn clean package'
-       }
-      }
-     stage ('archive'){
-      steps {
-       archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
-       }
-      }
-    stage ('junit'){
-      steps {
-        junit 'target/surefire-reports/*.xml'
-	}
-      }
-  }
-}
-    
+node('Jaya') {
+   properties([parameters([choice(choices: ['master', 'feature-1', 'feature-2'], description: '', name: 'Branch_name')])])
+   stage('SCM') {
+      // git clone
+           git 'https://github.com/jayaprakash521/spc.git'
+   }
+   
+   stage ('build the packages') {
+      // mvn package
+	  sh 'mvn clean package'
+   }
+
+   
+   
+   stage ('archival') {
+     // archiving artifacts
+	 archive 'target/*.jar'
+   }
+
