@@ -17,3 +17,4 @@ node('Jaya') {
 	 archive 'target/*.jar'
    }
 
+}
