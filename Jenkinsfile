@@ -17,7 +17,7 @@ node('Ubuntu') {
 
     stage ('archival') {
      // archiving artifacts
-	   archiveArtifacts artifacts: 'webapp/target/*.war', followSymlinks: false
+	   archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
    }
 
 }
