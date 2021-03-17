@@ -1,5 +1,7 @@
 node('Ubuntu') {
-   properties([parameters([choice(choices: ['master', 'sprint-1', 'sprint-2'], description: '', name: 'Branch_name')])])1
+    parameters {
+      choice(name: 'branch_name', choices: ['master','sprint-1','sprint-2'], description: 'Pick something')
+      }
    stage('SCM') {
       // git clone
 	  git 'https://github.com/jayaprakash521/spc.git'
@@ -7,7 +9,10 @@ node('Ubuntu') {
    
    stage ('build the packages') {
       // mvn package
-	  sh 'mvn package'
+	  if (env.branch == 'master')
+	       sh 'mvn package'
+	  else
+	      sh 'mvn clean package'
    }
 
     stage ('archival') {
