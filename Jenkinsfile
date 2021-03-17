@@ -1,28 +1,21 @@
-pipeline {
-     agent {
-        label 'Jaya'
-       }
-     stages {
-        stage('git clone') {
-            steps {
-               git 'https://github.com/jayaprakash521/spc.git'
-             }
-         }
-        stage('build') {
-            steps {
-               sh 'mvn clean package'
-            }
-          }
-        stage('archeve') {
-            steps {
-              archive 'target/*.jar'
-              }
-          }
-        stage('junit') {
-            steps {
-              junit 'target/surefire-reports/*.xml'
-	      }
-	  }
-     }
+node('Jaya') {
+   properties([parameters([choice(choices: ['master', 'feature-1', 'feature-2'], description: '', name: 'Branch_name')])])
+   stage('SCM') {
+      // git clone
+         git 'https://github.com/jayaprakash521/spc.git'
+   }
+   
+   stage ('build the packages') {
+      // mvn package
+	  sh 'mvn package'
+   }
+
+   
+   
+   stage ('archival') {
+     // archiving artifacts
+	 archive 'target/*.jar'
+   }
+
 }
            
