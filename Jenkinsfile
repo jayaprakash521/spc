@@ -3,19 +3,19 @@ node('Ubuntu') {
    stage('SCM') {
       // git clone
 	  git 'https://github.com/jayaprakash521/spc.git'
-          branch '${params.Branch_name}'
    }
    
    stage ('build the packages') {
       // mvn package
-	  sh 'mvn clean package'
+	  if env.branch == 'master'
+	       sh 'mvn package'
+	  else
+	      sh 'mvn clean package'
    }
 
-   
-   
-   stage ('archival') {
+    stage ('archival') {
      // archiving artifacts
-	 archive 'target/*.jar'
+	   archiveArtifacts artifacts: 'webapp/target/*.war', followSymlinks: false
    }
 
-}        
+}     
