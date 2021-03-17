@@ -7,12 +7,7 @@ node('Ubuntu') {
    
    stage ('build the packages') {
       // mvn package
-          if (params.Branch_name == 'master') {
-	       sh 'mvn package'
-		   }
-	  else {
-	      sh 'mvn clean package'
-		  }
+	  sh 'mvn package'
    }
 
     stage ('archival') {
