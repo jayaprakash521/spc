@@ -1,4 +1,4 @@
-node('Jaya') {
+node('Ubuntu') {
    properties([parameters([choice(choices: ['master', 'feature-1', 'feature-2'], description: '', name: 'Branch_name')])])
    stage('SCM') {
       // git clone
