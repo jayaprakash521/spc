@@ -7,7 +7,7 @@ node('Ubuntu') {
    
    stage ('build the packages') {
       // mvn package
-	  if env.branch == 'master'
+	  if (env.branch) == 'master'
 	       sh 'mvn package'
 	  else
 	      sh 'mvn clean package'
