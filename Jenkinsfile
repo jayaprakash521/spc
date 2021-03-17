@@ -5,7 +5,7 @@ pipeline {
      stages {
         stage('git clone') {
             steps {
-               git https://github.com/jayaprakash521/spc.git
+               git 'https://github.com/jayaprakash521/spc.git'
              }
          }
         stage('build') {
