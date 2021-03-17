@@ -1,6 +1,6 @@
 pipeline {
      agent {
-        label 'Jaya'
+        label 'Ubuntu'
        }
      parameters {
       choice(name: 'branch_name', choices: ['master','sprint-1','sprint-2'], description: 'Pick something')
