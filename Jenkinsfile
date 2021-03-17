@@ -1,11 +1,14 @@
 pipeline {
      agent {
-        label 'Ubuntu'
+        label 'Jaya'
        }
+     parameters {
+      choice(name: 'branch_name', choices: ['master','sprint-1','sprint-2'], description: 'Pick something')
+      }
      stages {
         stage('git clone') {
             steps {
-               git 'https://github.com/jayaprakash521/spc.git'
+                git url: 'https://github.com/jayaprakash521/spc.git',branch: "${params.branch_name}"
              }
          }
         stage('build') {
@@ -25,4 +28,4 @@ pipeline {
 	  }
      }
 }
-           
+               
